@@ -1,0 +1,36 @@
+<button class="btn btn-info " (click)=listAllServers()>Refresh Servers</button>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Server Name</th>
+                    <th>Status</th>
+                    <th>Ip</th>
+                    <th>Token</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let details of service.ec2Response.response">
+                    <td>{{details._isntanceName}}</td>
+                    <td>{{details._state}}</td>
+                    <td>{{details._ipAddress == null ? '0.0.0.0' : details._ipAddress}}</td>
+                    <td>
+                        <!-- <form novalidate autocomplete="off" #form="ngForm" (submit)="startServer(details._instanceId)">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg" placeholder="16 Digit Card Number"
+                                    name="authToken" #authToken="ngModel" [(ngModel)]="service.ec2Request.authToken">
+                            </div>
+                        </form> -->
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-circle-play" (click)="startServer(details._instanceId)"></i>
+                        <i class="fa-solid fa-circle-stop" (click)="stopServer(details._instanceId)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
